@@ -42,10 +42,7 @@ public struct PushMessage {
             "to":recipient
         ]
         if let gcmPayloadData = gcmPayload {
-            payloadData["notification"] = try gcmPayloadData.makeJSON()
-        }
-        if let payload = data {
-            payloadData["data"] = payload
+            payloadData["data"] = try gcmPayloadData.makeJSON()
         }
         if let priority = priority?.rawValue {
             payloadData["priority"] = priority
